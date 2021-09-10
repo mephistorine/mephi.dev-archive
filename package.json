@@ -1,0 +1,28 @@
+{
+  "name": "mephi.dev",
+  "version": "0.0.1",
+  "description": "Sam Bulatov blog",
+  "scripts": {
+    "start": "eleventy --serve --port=8081"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mephistorine/mephi.dev.git"
+  },
+  "keywords": [
+    "eleventy"
+  ],
+  "author": {
+    "name": "Sam Bulatov",
+    "email": "mephistorine@gmail.com",
+    "url": "mephi.dev"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mephistorine/mephi.dev/issues"
+  },
+  "homepage": "https://github.com/mephistorine/mephi.dev#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^0.12.1"
+  }
+}
