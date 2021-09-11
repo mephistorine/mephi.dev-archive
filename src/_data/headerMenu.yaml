@@ -1,0 +1,8 @@
+- label: Главная
+  url: /
+- label: Проекты
+  url: /projects
+- label: Доклады
+  url: /talks
+- label: Обо мне
+  url: /about

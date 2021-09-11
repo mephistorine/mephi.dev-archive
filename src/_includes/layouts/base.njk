@@ -21,23 +21,11 @@
     <div class="menu-container">
       <nav>
         <ul class="site-menu">
-          
+          {% for menuItem in headerMenu %}
           <li>
-            <a href="/">Главная</a>
+            <a href="{{ menuItem.url }}">{{ menuItem.label }}</a>
           </li>
-          
-          <li>
-            <a href="/projects">Проекты</a>
-          </li>
-          
-          <li>
-            <a href="/talks">Доклады</a>
-          </li>
-          
-          <li>
-            <a href="/about">Обо мне</a>
-          </li>
-          
+          {% endfor %}
         </ul>
       </nav>
     </div>
@@ -53,37 +41,7 @@
 
 <main class="main">
   <div class="container">
-    
-<section class="hero">
-  <h1 class="title">Привет 👋</h1>
-  <p class="description">Тут я делюсь своим опытом, в разработке приложений и не только. Технический стек <a href="https://angular.io">Angular</a>, <a href="https://www.typescriptlang.org">Typescript</a>,
-    <a href="https://rxjs.dev">RxJS</a> и <a href="https://leafletjs.com/">Leaflet</a></p>
-</section>
-
-<section class="section recent-articles">
-  <h2 class="title">Свежее</h2>
-  <ul class="article-list">
-    
-    <li><a href="/articles/test-article/">My First Post</a></li>
-    
-  </ul>
-</section>
-
-<section class="section">
-  <h2 class="title">Всё</h2>
-
-  
-  <section class="section">
-    <h3 class="title">2020</h3>
-    <ul class="article-list">
-      
-      <li><a href="/articles/test-article/">My First Post</a></li>
-      
-    </ul>
-  </section>
-  
-</section>
-
+    {{ content | safe }}
   </div>
 </main>
 

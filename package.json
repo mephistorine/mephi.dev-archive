@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/mephistorine/mephi.dev#readme",
   "dependencies": {
-    "@11ty/eleventy": "^0.12.1"
+    "@11ty/eleventy": "^0.12.1",
+    "yaml": "^1.10.2"
   }
 }

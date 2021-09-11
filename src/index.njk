@@ -1,49 +1,33 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+---
+layout: layouts/base.njk
+---
 
-    <link rel="stylesheet" href="/static/styles/index.css">
+<section class="hero">
+  <h1 class="title">Привет 👋</h1>
+  <p class="description">Тут я делюсь своим опытом, в разработке приложений и не только. Технический стек <a href="https://angular.io">Angular</a>, <a href="https://www.typescriptlang.org">Typescript</a>,
+    <a href="https://rxjs.dev">RxJS</a> и <a href="https://leafletjs.com/">Leaflet</a></p>
+</section>
 
-    <script src="/static/scripts/main.js"></script>
+<section class="section recent-articles">
+  <h2 class="title">Свежее</h2>
+  <ul class="article-list">
+    {% for article in collections.articles | head(-3) | reverse %}
+    <li><a href="{{ article.url }}">{{ article.data.title }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
 
-    <title>Главная страница – Сэм Булатов</title>
-  </head>
-  <body class="body">
-    <header class="header">
-      <div class="container">
-        <div class="author-name-container">
-          <p>Сэм Булатов</p>
-        </div>
+<section class="section">
+  <h2 class="title">Всё</h2>
 
-        <div class="menu-container">
-          <nav>
-            <ul class="site-menu">
-              <li><a href="/">Главная</a></li>
-              <li><a href="/articles">Статьи</a></li>
-              <li><a href="/projects">Проекты</a></li>
-              <li><a href="/talks">Доклады</a></li>
-            </ul>
-          </nav>
-        </div>
-
-        <div class="theme-switcher-container">
-          <button class="theme-switcher-button">
-            <span class="theme-switcher-label-light">Светлая</span>
-            <span class="theme-switcher-label-dark">Темная</span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="logo-container">
-          <img src="/static/pictures/mephistorine.svg" alt="Логотип Сэма Булатова" aria-hidden="true">
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
+  {% for year, articles in collections.articlesByYear %}
+  <section class="section">
+    <h3 class="title">{{ year }}</h3>
+    <ul class="article-list">
+      {% for article in articles %}
+      <li><a href="{{ article.url }}">{{ article.data.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+</section>
