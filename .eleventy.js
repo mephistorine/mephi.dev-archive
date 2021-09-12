@@ -1,4 +1,9 @@
 const YAML = require('yaml');
+const markdownIt = require('markdown-it');
+const markdownItTitleAnchor = require('markdown-it-anchor');
+const markdownItToc = require('markdown-it-table-of-contents');
+const markdownItAttrs = require('markdown-it-attrs');
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 /**
  * Возвращает список статей
@@ -28,8 +33,10 @@ function eleventy(config) {
 
   config.setDataDeepMerge(true);
   config.addPassthroughCopy('static');
+  config.addPassthroughCopy('src/**/*.(html|gif|jpg|jpeg|png|webp|svg|mp4|webm|zip)');
   config.addLayoutAlias('article', 'layouts/article.njk');
   config.addDataExtension('yaml', (content) => YAML.parse(content));
+  config.addPlugin(syntaxHighlight);
 
   config.addCollection('articles', (collectionApi) => takeArticles(collectionApi));
 
@@ -87,6 +94,27 @@ function eleventy(config) {
 
     return array.slice(0, n);
   });
+
+  const markdownParser = markdownIt({
+    html: true,
+    breaks: true,
+    linkify: true,
+    typographer: true
+  })
+    .use(markdownItAttrs)
+    .use(markdownItToc, {
+      includeLevel: [2, 3, 4, 5, 6],
+      listType: 'ol',
+      containerHeaderHtml: `<h2>Содержание</h2>`,
+      containerClass: `article-table-of-content`
+    })
+    .use(markdownItTitleAnchor, {
+      permalink: true,
+      permalinkClass: 'title-anchor',
+      permalinkSymbol: '⌗'
+    })
+
+  config.setLibrary('md', markdownParser);
 
   return {
     dir: {

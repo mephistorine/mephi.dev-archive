@@ -2,18 +2,24 @@
   margin: 0;
   line-height: 1.5;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  color: #333333;
-  background-color: #ffffff;
+  color: var(--text-color);
+  background-color: var(--bg-color);
   font-size: 16px;
 
   --accent-color: #8870ff;
 
   transition: 250ms linear color, 250ms linear background-color;
+
+  --text-color: #222222;
+  --invert-text-color: #ffffff;
+
+  --bg-color: #ffffff;
 }
 
 .body.is-dark-theme {
-  color: #ffffff;
-  background-color: #333333;
+  --text-color: #dfdfdf;
+  --invert-text-color: #222222;
+  --bg-color: #222222;
 }
 
 button {
@@ -32,6 +38,88 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+blockquote > p {
+  margin: 0;
+}
+
+blockquote::before {
+  font-family: monospace;
+  content: '>';
+  display: block;
+  color: var(--accent-color);
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+}
+
+blockquote {
+  margin: 1.5em 0;
+  padding: 1.5rem 1rem 1.5rem 2rem;
+  border-block: 1px solid var(--accent-color);
+  position: relative;
+}
+
+blockquote cite {
+  margin-block-start: 1rem;
+  display: block;
+}
+
+blockquote cite::before {
+  content: '—';
+  display: inline-block;
+  margin-inline-end: 1rem;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0 0 1rem;
+}
+
+figure figcaption {
+  color: #898989;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.is-article-page ul,
+.is-article-page ol {
+  list-style: none;
+  padding-left: 1.5rem;
+}
+
+.is-article-page ol {
+  counter-reset: li;
+}
+
+.is-article-page li {
+  position: relative;
+}
+
+.is-article-page ol li {
+  counter-increment: li;
+}
+
+.is-article-page ol li::before,
+.is-article-page ul li::before {
+  color: var(--accent-color);
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  text-align: end;
+  position: absolute;
+  right: calc(100% + .4rem);
+}
+
+.is-article-page ol li::before {
+  content: counter(li);
+}
+
+.is-article-page ul li::before {
+  content: '-';
 }
 
 .container {
@@ -78,17 +166,9 @@ a:hover {
   gap: 0.6rem;
 }
 
-.theme-switcher-button::before {
-  content: '🌙';
-}
-
 .is-dark-theme .theme-switcher-button {
   color: #333333;
   background-color: #ffffff;
-}
-
-.is-dark-theme .theme-switcher-button::before {
-  content: '☀️';
 }
 
 .theme-switcher-label-light {
@@ -146,4 +226,60 @@ ul.article-list {
 
 .site-menu a {
   white-space: nowrap;
+}
+
+.alert {
+  padding: 1.7rem 0.5rem 0.2rem 0.5rem;
+  border-radius: 5px;
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+  margin-bottom: 1rem;
+}
+
+.alert > *:first-child {
+  margin-top: 0;
+}
+
+.alert > *:last-child {
+  margin-bottom: 0;
+}
+
+.alert::before {
+  color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 2px 7px;
+  border-bottom-right-radius: 5px;
+  font-size: 0.8em;
+}
+
+.alert.note {
+  background-color: hsl(245deg 82% 54% / 33%);
+  border-color: hsl(244.7, 76.8%, 54.3%);
+}
+
+.alert.note::before {
+  content: 'Заметка:';
+  background-color: hsl(244.7, 76.8%, 54.3%);
+}
+
+.alert.error {
+  background-color: hsl(0deg 84% 67% / 33%);
+  border-color: hsl(0deg 82% 67%);
+}
+
+.alert.error::before {
+  content: 'Важно:';
+  background-color: hsl(0deg 82% 67%);
+}
+
+pre {
+  overflow-x: auto;
+}
+
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
+  background-color: transparent;
+  border: 1px solid #e4e3e3;
 }
