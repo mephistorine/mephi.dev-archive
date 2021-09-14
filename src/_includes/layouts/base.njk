@@ -22,7 +22,7 @@
     <div class="menu-container">
       <nav>
         <ul class="site-menu">
-          {% for menuItem in headerMenu %}
+          {% for menuItem in siteInfo.menu %}
           <li>
             <a href="{{ menuItem.url }}">{{ menuItem.label }}</a>
           </li>

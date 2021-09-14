@@ -1,11 +1,18 @@
 ---
-title: "My First Post"
-date: 2020-08-29
-lastModifyDate: 2020-08-29T17:05:16+03:00
-author: mephistorine
-draft: true
-tags:
-  - css
+title = "My First Post 1"
+date = 2020-08-29T00:00:00.000Z
+author = "mephistorine"
+draft = true
+tags = [ "css", "html", "javascript" ]
+excerpt = "Тестовая запись"
+
+[origin]
+title = "Test article"
+url = "https://google.com"
+
+[poster]
+src = "images/cat.jpeg"
+alt = "Это постер"
 ---
 
 ```typescript
@@ -18,7 +25,6 @@ function hello(): string {
 can [see the source for it by adding '.text' to the URL](/projects/markdown/syntax.text).
 
 ----
-
 
 <figure>
   <img src="images/cat.jpeg"/>

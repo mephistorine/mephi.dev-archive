@@ -1,9 +1,9 @@
-const YAML = require('yaml');
 const markdownIt = require('markdown-it');
 const markdownItTitleAnchor = require('markdown-it-anchor');
 const markdownItToc = require('markdown-it-table-of-contents');
 const markdownItAttrs = require('markdown-it-attrs');
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const toml = require('toml')
 
 /**
  * Возвращает список статей
@@ -30,13 +30,19 @@ function takeArticles(collectionApi) {
  * @param {UserConfig} config Конфигурация
  */
 function eleventy(config) {
+  config.addDataExtension('toml', (content) => toml.parse(content));
 
   config.setDataDeepMerge(true);
   config.addPassthroughCopy('static');
   config.addPassthroughCopy('src/**/*.(html|gif|jpg|jpeg|png|webp|svg|mp4|webm|zip)');
   config.addLayoutAlias('article', 'layouts/article.njk');
-  config.addDataExtension('yaml', (content) => YAML.parse(content));
   config.addPlugin(syntaxHighlight);
+  config.setFrontMatterParsingOptions({
+    engines: {
+      toml: (content) => toml.parse(content)
+    },
+    language: 'toml'
+  })
 
   config.addCollection('articles', (collectionApi) => takeArticles(collectionApi));
 
@@ -61,7 +67,6 @@ function eleventy(config) {
   })
 
   config.addCollection('tags', /** @param {TemplateCollection} collectionApi */(collectionApi) => {
-
     const tags = [];
 
     for (const item of collectionApi.getAll()) {

@@ -136,7 +136,7 @@ figure figcaption {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .author-name-container {

@@ -1,0 +1,18 @@
+# Файл общей конфигурации сайта
+name = "Сэм Булатов"
+
+[[menu]]
+label = "Главная"
+url = "/"
+
+[[menu]]
+label = "Проекты"
+url = "/projects"
+
+[[menu]]
+label = "Доклады"
+url = "/talks"
+
+[[menu]]
+label = "Обо мне"
+url = "/about"
