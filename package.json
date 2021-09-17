@@ -4,6 +4,7 @@
   "description": "Sam Bulatov blog",
   "scripts": {
     "start": "eleventy --serve --port=9876",
+    "build": "eleventy",
     "debug": "DEBUG=Eleventy* eleventy"
   },
   "repository": {
