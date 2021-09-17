@@ -2,17 +2,13 @@
 title = "My First Post 1"
 date = 2020-08-29T00:00:00.000Z
 author = "mephistorine"
-draft = true
 tags = [ "css", "html", "javascript" ]
 excerpt = "Тестовая запись"
+draft = true
 
 [origin]
 title = "Test article"
 url = "https://google.com"
-
-[poster]
-src = "images/cat.jpeg"
-alt = "Это постер"
 ---
 
 ```typescript

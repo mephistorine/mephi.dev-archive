@@ -3,7 +3,23 @@ layout = "layouts/base.njk"
 ---
 
 <section class="container article-header">
-  <h1 class="title">{{ title }}</h1>
+  {% if poster %}
+  <div class="article-poster-container">
+    <img src="{{ poster.src }}" alt="{{ poster.src }}">
+  </div>
+  {% endif %}
+
+  <div class="article-main-info">
+    <time class="article-create-time" datetime="{{ date.toISOString() }}">{{ date | formatDate }}</time>
+    <h1 class="article-title">{{ title }}</h1>
+    <ul class="article-tag-list">
+      {% for tag in tags %}
+      <li>
+        <a href="/tags/{{ tag }}">#{{ tag }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 </section>
 
 <article class="container is-article-page">

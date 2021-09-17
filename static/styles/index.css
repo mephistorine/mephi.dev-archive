@@ -123,13 +123,17 @@ figure figcaption {
 }
 
 .container {
-  max-width: 1024px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
 .header {
   padding: 1rem 0;
   border-bottom: 1px solid hsl(0deg 0% 0% / 8%);
+}
+
+.is-dark-theme .header {
+  border-bottom-color: hsl(0deg 0% 100% / 8%);
 }
 
 .header .container {
@@ -142,6 +146,10 @@ figure figcaption {
 .author-name-container {
   flex-grow: 1;
   font-weight: bold;
+}
+
+.author-name-container p {
+  margin: 0;
 }
 
 .site-menu {
@@ -279,7 +287,42 @@ pre {
   overflow-x: auto;
 }
 
-:not(pre) > code[class*="language-"], pre[class*="language-"] {
+pre[class*="language-"] {
   background-color: transparent;
-  border: 1px solid #e4e3e3;
+  border: 1px solid hsl(0deg 0% 0% / 19%);
+}
+
+.is-dark-theme pre[class*="language-"] {
+  border: 1px solid hsla(0deg 0% 100% / 19%);
+}
+
+.article-poster-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.article-title {
+  font-size: 4rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.article-create-time {
+  color: hsl(0deg 0% 0% / 32%);
+}
+
+.is-dark-theme .article-create-time {
+  color: hsla(0deg 0% 100% / 53%);
+}
+
+.article-tag-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.article-header {
+  margin: 1rem auto;
 }

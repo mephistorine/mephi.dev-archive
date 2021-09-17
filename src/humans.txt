@@ -1,0 +1,16 @@
+---
+permalink = "humans.txt"
+eleventyExcludeFromCollections = true
+---
+
+/* TEAM */
+Author: Sam Bulatov
+Contact: mephistorine [at] gmail.com
+Twitter: @mephistorine
+From: Krasnodar, Russia
+
+/* SITE */
+Last update: 2021-09-16
+Language: Russian
+Doctype: HTML5
+IDE: WebStorm

@@ -1,9 +1,9 @@
-const markdownIt = require('markdown-it');
-const markdownItTitleAnchor = require('markdown-it-anchor');
-const markdownItToc = require('markdown-it-table-of-contents');
-const markdownItAttrs = require('markdown-it-attrs');
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const toml = require('toml')
+const markdownIt = require("markdown-it")
+const markdownItTitleAnchor = require("markdown-it-anchor")
+const markdownItToc = require("markdown-it-table-of-contents")
+const markdownItAttrs = require("markdown-it-attrs")
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
+const toml = require("toml")
 
 /**
  * Возвращает список статей
@@ -11,42 +11,44 @@ const toml = require('toml')
  * @param {TemplateCollection} collectionApi
  */
 function takeArticles(collectionApi) {
-  const articles = [];
+  const articles = []
 
   for (const item of collectionApi.getAll()) {
-    if (!('type' in item.data)) {
+    if (!("type" in item.data)) {
       continue
     }
 
-    if (item.data.type === 'article' && item.data.draft) {
-      articles.push(item);
+    if (item.data.type === "article" && !item.data.draft) {
+      articles.push(item)
     }
   }
 
-  return articles;
+  return articles
 }
 
 /**
  * @param {UserConfig} config Конфигурация
  */
 function eleventy(config) {
-  config.addDataExtension('toml', (content) => toml.parse(content));
+  config.addDataExtension("toml", (content) => toml.parse(content))
 
-  config.setDataDeepMerge(true);
-  config.addPassthroughCopy('static');
-  config.addPassthroughCopy('src/**/*.(html|gif|jpg|jpeg|png|webp|svg|mp4|webm|zip)');
-  config.addLayoutAlias('article', 'layouts/article.njk');
-  config.addPlugin(syntaxHighlight);
+  config.setDataDeepMerge(true)
+  config.addPassthroughCopy("static")
+  config.addPassthroughCopy("src/**/*.(html|gif|jpg|jpeg|png|webp|svg|mp4|webm|zip)")
+  config.addPassthroughCopy("src/humans.txt")
+
+  config.addLayoutAlias("article", "layouts/article.njk")
+  config.addPlugin(syntaxHighlight)
   config.setFrontMatterParsingOptions({
     engines: {
       toml: (content) => toml.parse(content)
     },
-    language: 'toml'
+    language: "toml"
   })
 
-  config.addCollection('articles', (collectionApi) => takeArticles(collectionApi));
+  config.addCollection("articles", (collectionApi) => takeArticles(collectionApi))
 
-  config.addCollection('articlesByYear', /** @param {TemplateCollection} collectionApi */ (collectionApi) => {
+  config.addCollection("articlesByYear", /** @param {TemplateCollection} collectionApi */(collectionApi) => {
     const articles = takeArticles(collectionApi)
 
     /** @type {Map<string, any[]>} */
@@ -66,18 +68,18 @@ function eleventy(config) {
     return articlesByYear
   })
 
-  config.addCollection('tags', /** @param {TemplateCollection} collectionApi */(collectionApi) => {
-    const tags = [];
+  config.addCollection("tags", /** @param {TemplateCollection} collectionApi */(collectionApi) => {
+    const tags = []
 
     for (const item of collectionApi.getAll()) {
-      if (!('tags' in item.data)) {
+      if (!("tags" in item.data)) {
         continue
       }
 
       for (const tagName of item.data.tags) {
         const tag = tags.find((tag) => tag.name === tagName)
 
-        if (typeof tag !== 'undefined') {
+        if (typeof tag !== "undefined") {
           tag.articleCount = tag.articleCount + 1
           continue
         }
@@ -89,16 +91,25 @@ function eleventy(config) {
       }
     }
 
-    return tags;
-  });
+    return tags
+  })
 
-  config.addNunjucksFilter('head', (array, n) => {
+  config.addNunjucksFilter("head", (array, n) => {
     if (n < 0) {
-      return array.slice(n);
+      return array.slice(n)
     }
 
-    return array.slice(0, n);
-  });
+    return array.slice(0, n)
+  })
+
+  config.addNunjucksFilter("formatDate", (date) => {
+    return date.toLocaleString("ru", {
+      hour12: false,
+      year: "numeric",
+      day: "2-digit",
+      month: "short"
+    })
+  })
 
   const markdownParser = markdownIt({
     html: true,
@@ -108,35 +119,35 @@ function eleventy(config) {
   })
     .use(markdownItAttrs)
     .use(markdownItToc, {
-      includeLevel: [2, 3, 4, 5, 6],
-      listType: 'ol',
+      includeLevel: [ 2, 3, 4, 5, 6 ],
+      listType: "ol",
       containerHeaderHtml: `<h2>Содержание</h2>`,
       containerClass: `article-table-of-content`
     })
     .use(markdownItTitleAnchor, {
       permalink: true,
-      permalinkClass: 'title-anchor',
-      permalinkSymbol: '⌗'
+      permalinkClass: "title-anchor",
+      permalinkSymbol: "⌗"
     })
 
-  config.setLibrary('md', markdownParser);
+  config.setLibrary("md", markdownParser)
 
   return {
     dir: {
-      input: 'src',
-      output: 'dist',
-      dataTemplateEngine: 'njk'
+      input: "src",
+      output: "dist",
+      dataTemplateEngine: "njk"
     },
     templateFormats: [
-      'md',
-      'njk',
-      'html',
-      'liquid'
+      "md",
+      "njk",
+      "html",
+      "liquid"
     ],
-    markdownTemplateEngine: 'njk',
-    htmlTemplateEngine: 'njk',
-    dataTemplateEngine: 'njk'
-  };
+    markdownTemplateEngine: "njk",
+    htmlTemplateEngine: "njk",
+    dataTemplateEngine: "njk"
+  }
 }
 
 module.exports = eleventy
