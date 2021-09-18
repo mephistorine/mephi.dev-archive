@@ -30,7 +30,7 @@
 
   <script src="/static/scripts/main.js"></script>
 
-  <title>{{ title }} – {{ siteInfo.name }}</title>
+  <title>{{ title or renderData.title }} – {{ siteInfo.name }}</title>
 </head>
 <body class="body">
 <header class="header">

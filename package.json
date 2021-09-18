@@ -1,11 +1,12 @@
 {
   "name": "mephi.dev",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Sam Bulatov blog",
   "scripts": {
-    "start": "eleventy --serve --port=9876",
-    "build": "eleventy",
-    "debug": "DEBUG=Eleventy* eleventy"
+    "clear": "rimraf dist",
+    "start": "npm run clear && eleventy --serve --port=9876",
+    "build": "npm run clear && eleventy",
+    "debug": "npm run clear && DEBUG=Eleventy* eleventy"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,7 @@
   "author": {
     "name": "Sam Bulatov",
     "email": "mephistorine@gmail.com",
-    "url": "mephi.dev"
+    "url": "https://mephi.dev"
   },
   "license": "MIT",
   "bugs": {
@@ -33,5 +34,8 @@
     "markdown-it-attrs": "^4.0.0",
     "markdown-it-table-of-contents": "^0.5.2",
     "toml": "^3.0.0"
+  },
+  "dependencies": {
+    "rimraf": "^3.0.2"
   }
 }
