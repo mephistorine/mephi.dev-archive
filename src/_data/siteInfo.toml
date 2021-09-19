@@ -6,9 +6,10 @@ accentColor = "#8870ff"
 url = "https://mephi.dev"
 feedUrl = "https://mephi.dev/feed.xml"
 
-[[menu]]
-label = "Главная"
-url = "/"
+[author]
+name = "Сэм Булатов"
+email = "mephistorine@gmail.com"
+twitter = "mephistorine"
 
 [[menu]]
 label = "Проекты"
@@ -21,3 +22,7 @@ url = "/talks"
 [[menu]]
 label = "Обо мне"
 url = "/about"
+
+[[menu]]
+label = "Контакты"
+url = "/about#contacts"
