@@ -9,6 +9,10 @@ draft = true
 [origin]
 title = "Test article"
 url = "https://google.com"
+
+[poster]
+src = "images/cat.jpeg"
+alt = "My First Post 1"
 ---
 
 ```typescript

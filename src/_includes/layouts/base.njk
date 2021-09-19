@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
+  {% set pageTitle %}
+    {{ title or renderData.title }} – {{ siteInfo.name }}
+  {% endset %}
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,9 +14,7 @@
   <meta name="generator" content="11ty">
 
   <link rel="author" href="/humans.txt">
-
   <link rel="me" href="mailto:mephistorine@gmail.com">
-
   <link rel="index" href="https://mephi.dev/">
 
   <link id="code-theme-link" rel="stylesheet" href="/static/styles/light-code-theme.css">
@@ -28,9 +30,20 @@
   <meta name="theme-color" content="#ffffff">
   <!-- endregion FAVICONS -->
 
+  <!-- region TWITTER -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@{{ siteInfo.author.twitter }}">
+  <meta name="twitter:creator" content="@{{ siteInfo.author.twitter }}">
+  <meta name="twitter:url" content="{{ page.url | url | absoluteUrl(siteInfo.url) }}">
+  <meta name="twitter:title" content="{{ pageTitle | trim }}">
+  <meta name="twitter:description" content="{{ excerpt or siteInfo.description | trim }}">
+
+  <meta name="twitter:image" content="{{ poster.src or '/static/pictures/site-social-preview.jpg' }}">
+  <!-- endregion TWITTER -->
+
   <script src="/static/scripts/main.js"></script>
 
-  <title>{{ title or renderData.title }} – {{ siteInfo.name }}</title>
+  <title>{{ pageTitle }}</title>
 </head>
 <body class="body">
 <header class="header">
