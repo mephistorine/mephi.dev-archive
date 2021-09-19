@@ -3,6 +3,7 @@ const markdownItTitleAnchor = require("markdown-it-anchor")
 const markdownItToc = require("markdown-it-table-of-contents")
 const markdownItAttrs = require("markdown-it-attrs")
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
+const rss = require("@11ty/eleventy-plugin-rss")
 const toml = require("toml")
 
 /**
@@ -39,6 +40,7 @@ function eleventy(config) {
 
   config.addLayoutAlias("article", "layouts/article.njk")
   config.addPlugin(syntaxHighlight)
+  config.addPlugin(rss)
   config.setFrontMatterParsingOptions({
     engines: {
       toml: (content) => toml.parse(content)

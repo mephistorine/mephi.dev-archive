@@ -22,3 +22,4 @@ title = "Обо мне"
 - [Твиттер](https://twitter.com/mephistorine)
 - [Гитхаб](https://github.com/mephistorine)
 - [Инстаграм](https://instagram.com/mephistorine)
+- [RSS](/feed.xml)
