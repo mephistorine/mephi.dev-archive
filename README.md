@@ -21,3 +21,7 @@ npm run start
 ```bash
 npm run build
 ```
+
+---
+
+Сайт работает на [Eleventy](https://11ty.dev) с использованием парсера [markdownIt](https://github.com/markdown-it/markdown-it)
