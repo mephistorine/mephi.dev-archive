@@ -38,7 +38,7 @@
   <meta name="twitter:title" content="{{ pageTitle | trim }}">
   <meta name="twitter:description" content="{{ excerpt or siteInfo.description | trim }}">
 
-  <meta name="twitter:image" content="{{ poster.src or '/static/pictures/site-social-preview.jpg' }}">
+  <meta name="twitter:image" content="{{ poster.src or '/static/pictures/site-social-preview.jpg' | url | absoluteUrl(siteInfo.url) }}">
   <!-- endregion TWITTER -->
 
   <script src="/static/scripts/main.js"></script>
