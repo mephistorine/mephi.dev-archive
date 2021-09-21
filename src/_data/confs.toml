@@ -1,10 +1,24 @@
+# Список конференций на которых я буду выступать
+# или выступал
+#
+# Интерфейс полей
+# - name {string} Название
+# - url {string} Ссылка на сайт
+# - isOneDay {boolean} Флаг один день ли идет конференция
+# - startDate {Date} Дата начала
+# - endDate {Date} Дата окончания (Если конференция однодневная, то используется только startDate)
+# - isOffline {boolean} Флаг в офлайне ли будет конференция
+# - city {string} Название города
+# - country {string} Название страны
+
 [rndTechConf21]
 name = "Rnd Tech Conf'21"
-site = "https://rndtech.pro"
+url = "https://rndtech.pro"
 isOneDay = true
 startDate = 2021-09-04T00:00:00.000Z
+isOffline = true
 city = "Ростов на Дону"
-county = "Россия"
+country = "Россия"
 
 [fest4042021]
 name = "Фестиваль деятелей интернета 404"
@@ -12,8 +26,9 @@ url = "https://2021.404fest.ru/"
 isOneDay = false
 startDate = 2021-09-25T00:00:00.000Z
 endDate = 2021-09-26T00:00:00.000Z
+isOffline = true
 city = "Самара"
-county = "Россия"
+country = "Россия"
 
 [frontendConf2021]
 name = "Frontend Conf 2021"
@@ -21,5 +36,6 @@ url = "https://frontendconf.ru/moscow/2021"
 isOneDay = false
 startDate = 2021-10-11T00:00:00.000Z
 endDate = 2021-10-12T00:00:00.000Z
+isOffline = true
 city = "Москва"
-county = "Россия"
+country = "Россия"

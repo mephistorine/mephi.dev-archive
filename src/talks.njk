@@ -4,27 +4,41 @@ title = "Доклады"
 ---
 
 <div class="container">
-  {% for year, talks in collections.talksByYear %}
-  <section class="section">
-    <h3 class="title">{{ year }}</h3>
-    <ul class="talk-list">
-      {% for talk in talks %}
-      <li class="talk-list-item">
-        <div class="talk-date">
-          {% set conf = confs[talk.data.conferenceName] %}
+  <ul class="talk-list">
+    {% for talk in collections.talks %}
+    {% set conf = confs[ talk.data.conferenceName ] %}
+    {{ conf | log }}
+    <li class="talk-list-item">
+      <div class="talk-date">
+        {{ conf.isOneDay | log }}
+        {% if conf.isOneDay %}
+          {{ conf.startDate | formatDate }}
+        {% else %}
+          {{ conf.startDate | formatInterval(conf.endDate) }}
+        {% endif %}
+      </div>
 
-          {% if conf.isOneDay %}
-            {{ conf.startDate | formatDate }}
+      <div class="talk-info">
+        <h2 class="talk-title">
+          {% if conf.startDate | isUpcomingDate or talk.data.isHideUrl %}
+          {{ talk.data.title }}
           {% else %}
-            {{ conf.startDate | formatInterval(conf.endDate) }}
+          <a href="{{ talk.url }}">{{ talk.data.title }}</a>
           {% endif %}
-        </div>
-        <div class="talk-info">
+        </h2>
+        <h3 class="talk-conference-name">
+          <a href="{{ conf.url }}">{{ conf.title }}</a>
+        </h3>
+        <p class="conf-geo">
+          {% if conf.isOffline %}
+          {{ conf.country }}, {{ conf.city }}
+          {% else %}
+          Онлайн
+          {% endif %}
+        </p>
+      </div>
+    </li>
 
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
-  {% endfor %}
+    {% endfor %}
+  </ul>
 </div>

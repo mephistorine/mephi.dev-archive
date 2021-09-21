@@ -104,25 +104,6 @@ function eleventy(config) {
     return collectionApi.getFilteredByGlob("src/talks/**/*.md")
   })
 
-  config.addCollection("talksByYear", /** @param {TemplateCollection} collectionApi */(collectionApi) => {
-    const talks = collectionApi.getFilteredByGlob("src/talks/**/*.md")
-
-    const talksByYear = new Map()
-
-    for (const talk of talks) {
-      const createTime = new Date(talk.data.date)
-      const year = createTime.getFullYear()
-
-      if (talksByYear.has(year)) {
-        talksByYear.get(year).push(talk)
-      } else {
-        talksByYear.set(year, [ talk ])
-      }
-    }
-
-    return talksByYear
-  })
-
   config.addNunjucksFilter("head", (array, n) => {
     if (n < 0) {
       return array.slice(n)
@@ -141,12 +122,16 @@ function eleventy(config) {
   })
 
   config.addNunjucksFilter("formatInterval", (startDate, endDate) => {
-    return `${ startDate.getDate() }–${ date.toLocaleString("ru", {
+    return `${ startDate.getDate() }–${ endDate.toLocaleString("ru", {
       hour12: false,
       year: "numeric",
       day: "2-digit",
       month: "short"
     }) }`
+  })
+
+  config.addNunjucksFilter("isUpcomingDate", (startDate) => {
+    return startDate.getTime() > new Date().getTime()
   })
 
   const markdownParser = markdownIt({
