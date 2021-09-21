@@ -39,6 +39,8 @@ function eleventy(config) {
   config.addPassthroughCopy("src/humans.txt")
 
   config.addLayoutAlias("article", "layouts/article.njk")
+  config.addLayoutAlias("talk", "layouts/talk.njk")
+
   config.addPlugin(syntaxHighlight)
   config.addPlugin(rss)
   config.setFrontMatterParsingOptions({
@@ -48,10 +50,12 @@ function eleventy(config) {
     language: "toml"
   })
 
-  config.addCollection("articles", (collectionApi) => takeArticles(collectionApi))
+  config.addCollection("articles", /** @param {TemplateCollection} collectionApi */(collectionApi) => {
+    return collectionApi.getFilteredByGlob("src/articles/**/*.md")
+  })
 
   config.addCollection("articlesByYear", /** @param {TemplateCollection} collectionApi */(collectionApi) => {
-    const articles = takeArticles(collectionApi)
+    const articles = collectionApi.getFilteredByGlob("src/articles/**/*.md")
 
     /** @type {Map<string, any[]>} */
     const articlesByYear = new Map()
@@ -96,6 +100,29 @@ function eleventy(config) {
     return tags
   })
 
+  config.addCollection("talks", (collectionApi) => {
+    return collectionApi.getFilteredByGlob("src/talks/**/*.md")
+  })
+
+  config.addCollection("talksByYear", /** @param {TemplateCollection} collectionApi */(collectionApi) => {
+    const talks = collectionApi.getFilteredByGlob("src/talks/**/*.md")
+
+    const talksByYear = new Map()
+
+    for (const talk of talks) {
+      const createTime = new Date(talk.data.date)
+      const year = createTime.getFullYear()
+
+      if (talksByYear.has(year)) {
+        talksByYear.get(year).push(talk)
+      } else {
+        talksByYear.set(year, [ talk ])
+      }
+    }
+
+    return talksByYear
+  })
+
   config.addNunjucksFilter("head", (array, n) => {
     if (n < 0) {
       return array.slice(n)
@@ -111,6 +138,15 @@ function eleventy(config) {
       day: "2-digit",
       month: "short"
     })
+  })
+
+  config.addNunjucksFilter("formatInterval", (startDate, endDate) => {
+    return `${ startDate.getDate() }–${ date.toLocaleString("ru", {
+      hour12: false,
+      year: "numeric",
+      day: "2-digit",
+      month: "short"
+    }) }`
   })
 
   const markdownParser = markdownIt({

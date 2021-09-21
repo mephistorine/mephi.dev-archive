@@ -4,5 +4,27 @@ title = "Доклады"
 ---
 
 <div class="container">
-  <p>Скоро...</p>
+  {% for year, talks in collections.talksByYear %}
+  <section class="section">
+    <h3 class="title">{{ year }}</h3>
+    <ul class="talk-list">
+      {% for talk in talks %}
+      <li class="talk-list-item">
+        <div class="talk-date">
+          {% set conf = confs[talk.data.conferenceName] %}
+
+          {% if conf.isOneDay %}
+            {{ conf.startDate | formatDate }}
+          {% else %}
+            {{ conf.startDate | formatInterval(conf.endDate) }}
+          {% endif %}
+        </div>
+        <div class="talk-info">
+
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
 </div>

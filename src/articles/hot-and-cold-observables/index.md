@@ -1,6 +1,6 @@
 ---
 title = "Разбираемся чем отличаются горячие и холодные потоки в RxJS"
-date = 2020-08-29T00:00:00.000Z
+date = 2021-09-17T00:00:00.000Z
 author = "mephistorine"
 draft = false
 tags = [ "rxjs" ]
