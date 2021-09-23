@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/r",
-      "destination": "https://rndtech.pro/"
+      "destination": "/talks/rxjs-schedulers-404-fest/"
     }
   ]
 }

@@ -100,8 +100,24 @@ function eleventy(config) {
     return tags
   })
 
-  config.addCollection("talks", (collectionApi) => {
-    return collectionApi.getFilteredByGlob("src/talks/**/*.md")
+  config.addCollection("talks", (/** @param {TemplateCollection} collectionApi */collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("src/talks/**/*.md")
+      .slice()
+      .sort((a, b) => {
+        const startTimeConfA = a.data.confs[ a.data.conferenceName ].startDate.getTime()
+        const startTimeConfB = b.data.confs[ b.data.conferenceName ].startDate.getTime()
+
+        if (startTimeConfA > startTimeConfB) {
+          return 1
+        }
+
+        if (startTimeConfA < startTimeConfB) {
+          return -1
+        }
+
+        return 0
+      })
   })
 
   config.addNunjucksFilter("head", (array, n) => {

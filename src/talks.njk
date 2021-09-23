@@ -2,43 +2,37 @@
 layout = "layouts/page.njk"
 title = "Доклады"
 ---
+<ul class="talk-list">
+  {%- for talk in collections.talks -%}
+  {%- set conf = confs[ talk.data.conferenceName ] -%}
+  <li class="talk-list-item">
+    <div class="talk-date">
+      {%- if conf.isOneDay -%}
+        {{ conf.startDate | formatDate }}
+      {%- else -%}
+        {{ conf.startDate | formatInterval(conf.endDate) }}
+      {%- endif -%}
+    </div>
 
-<div class="container">
-  <ul class="talk-list">
-    {% for talk in collections.talks %}
-    {% set conf = confs[ talk.data.conferenceName ] %}
-    {{ conf | log }}
-    <li class="talk-list-item">
-      <div class="talk-date">
-        {{ conf.isOneDay | log }}
-        {% if conf.isOneDay %}
-          {{ conf.startDate | formatDate }}
-        {% else %}
-          {{ conf.startDate | formatInterval(conf.endDate) }}
-        {% endif %}
-      </div>
-
-      <div class="talk-info">
-        <h2 class="talk-title">
-          {% if conf.startDate | isUpcomingDate or talk.data.isHideUrl %}
+    <div class="talk-info">
+      <h2 class="talk-title">
+        {%- if conf.startDate | isUpcomingDate or talk.data.isHideUrl -%}
           {{ talk.data.title }}
-          {% else %}
+        {%- else -%}
           <a href="{{ talk.url }}">{{ talk.data.title }}</a>
-          {% endif %}
-        </h2>
-        <h3 class="talk-conference-name">
-          <a href="{{ conf.url }}">{{ conf.title }}</a>
-        </h3>
-        <p class="conf-geo">
-          {% if conf.isOffline %}
+        {%- endif -%}
+      </h2>
+      <p class="talk-conference-name">
+        <a href="{{ conf.url }}">{{ conf.name }}</a>
+      </p>
+      <p class="conf-geo">
+        {%- if conf.isOffline -%}
           {{ conf.country }}, {{ conf.city }}
-          {% else %}
+        {%- else -%}
           Онлайн
-          {% endif %}
-        </p>
-      </div>
-    </li>
-
-    {% endfor %}
-  </ul>
-</div>
+        {%- endif -%}
+      </p>
+    </div>
+  </li>
+  {%- endfor -%}
+</ul>

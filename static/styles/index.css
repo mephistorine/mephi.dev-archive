@@ -326,3 +326,18 @@ pre[class*="language-"] {
 .article-header {
   margin: 1rem auto;
 }
+
+.talk-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.talk-title {
+  margin-top: 0;
+}
+
+.talk-list-item:not(:last-child) {
+  border-bottom: 1px solid hsl(0deg 0% 87% / 17%);
+  margin-bottom: 1rem;
+}
