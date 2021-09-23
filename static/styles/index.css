@@ -286,11 +286,13 @@ pre[class*="language-"] {
   line-height: 1;
 }
 
-.article-create-time {
+.article-create-time,
+.post-type {
   color: hsl(0deg 0% 0% / 32%);
 }
 
-.is-dark-theme .article-create-time {
+.is-dark-theme .article-create-time,
+.is-dark-theme .post-type {
   color: hsla(0deg 0% 100% / 53%);
 }
 

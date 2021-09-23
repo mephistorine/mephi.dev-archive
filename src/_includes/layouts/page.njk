@@ -3,6 +3,14 @@ layout = "layouts/base.njk"
 ---
 
 <section class="container article-header">
+  {% if poster %}
+  <div class="page-poster-container">
+    <figure>
+      <img src="{{ poster.src }}" alt="{{ poster.alt }}">
+    </figure>
+  </div>
+  {% endif %}
+
   <h1 class="title">{{ title }}</h1>
 </section>
 
