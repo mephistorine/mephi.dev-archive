@@ -2,7 +2,8 @@
   "redirects": [
     {
       "source": "/r",
-      "destination": "/talks/rxjs-schedulers-404-fest/"
+      "destination": "/talks/rxjs-schedulers-404-fest/",
+      "permanent": false
     }
   ]
 }
