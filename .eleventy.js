@@ -52,10 +52,12 @@ function eleventy(config) {
 
   config.addCollection("articles", /** @param {TemplateCollection} collectionApi */(collectionApi) => {
     return collectionApi.getFilteredByGlob("src/articles/**/*.md")
+      .filter(p => !p.data.draft)
   })
 
   config.addCollection("articlesByYear", /** @param {TemplateCollection} collectionApi */(collectionApi) => {
     const articles = collectionApi.getFilteredByGlob("src/articles/**/*.md")
+      .filter(p => !p.data.draft)
 
     /** @type {Map<string, any[]>} */
     const articlesByYear = new Map()

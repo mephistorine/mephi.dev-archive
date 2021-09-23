@@ -195,27 +195,6 @@ figure figcaption {
   font-size: 3.5em;
 }
 
-@media screen and (max-width: 599px) {
-  .header .container {
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .menu-container {
-    width: 100%;
-    order: 1;
-    overflow-x: auto;
-  }
-
-  .container {
-    padding: 0 1rem;
-  }
-
-  .hero .title {
-    font-size: 2.2em;
-  }
-}
-
 .footer .container {
   display: flex;
   justify-content: space-between;
@@ -340,4 +319,35 @@ pre[class*="language-"] {
 .talk-list-item:not(:last-child) {
   border-bottom: 1px solid hsl(0deg 0% 87% / 17%);
   margin-bottom: 1rem;
+}
+
+.all-articles .section .title,
+.recent-articles .title {
+  margin-bottom: 0;
+}
+
+
+@media screen and (max-width: 599px) {
+  .header .container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .menu-container {
+    width: 100%;
+    order: 1;
+    overflow-x: auto;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .hero .title {
+    font-size: 2.2em;
+  }
+
+  .article-title {
+    font-size: 3rem;
+  }
 }
