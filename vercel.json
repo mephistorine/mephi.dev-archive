@@ -4,6 +4,11 @@
       "source": "/r",
       "destination": "/talks/rxjs-schedulers-404-fest/",
       "permanent": false
+    },
+    {
+      "source": "/rxsh",
+      "destination": "/talks/rxjs-schedulers-404-fest/",
+      "permanent": false
     }
   ]
 }
