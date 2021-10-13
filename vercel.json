@@ -9,6 +9,11 @@
       "source": "/rxsh",
       "destination": "/talks/rxjs-schedulers-404-fest/",
       "permanent": false
+    },
+    {
+      "source": "/ddir",
+      "destination": "/talks/rxjs-workshop-frontendconf2021/",
+      "permanent": false
     }
   ]
 }
