@@ -39,3 +39,14 @@ endDate = 2021-10-12T00:00:00.000Z
 isOffline = true
 city = "Москва"
 country = "Россия"
+
+[mergeConf2021]
+name = "Mergeconf 2021"
+url = "https://mergeconf.ru"
+isOneDay = false
+startDate = 2021-11-13T00:00:00.000Z
+endDate = 2021-11-14T00:00:00.000Z
+isOffline = true
+city = "Иннополис"
+country = "Россия"
+
