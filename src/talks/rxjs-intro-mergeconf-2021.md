@@ -7,7 +7,7 @@ isHideUrl = false
 
 ## Ссылки { #links }
 
-- [🖼️ Презентация](https://mephistorine.github.io/talks/intro-to-rxjs/index.html)
+- [🖼️ Презентация](https://mephistorine.github.io/talks/intro-to-rxjs-mergeconf2021/index.html)
 - [RxJS на русском](https://learnrxjs.ru)
 - [rxjs-ru](https://github.com/rxjs-ru)
 - [Манифест Реактивных Систем](https://www.reactivemanifesto.org/ru)
