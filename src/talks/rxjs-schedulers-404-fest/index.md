@@ -5,7 +5,7 @@ conferenceName = "fest4042021"
 isHideUrl = false
 ---
 
-### Ссылки { #links }
+## Ссылки { #links }
 
 - [🖼 Ссылка на слайды](https://mephistorine.github.io/talks/rxjs-404/index.html)
 - [RxJS на русском](https://learnrxjs.ru)

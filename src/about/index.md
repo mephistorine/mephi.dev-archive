@@ -3,7 +3,7 @@ layout = "layouts/page.njk"
 title = "Обо мне"
 
 [poster]
-src = "images/sam-bulatov.jpeg"
+src = "./images/sam-bulatov.jpeg"
 alt = "Сэм Булатов"
 ---
 
