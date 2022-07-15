@@ -1,36 +1,28 @@
 ---
-layout = "layouts/base.njk"
 title = "Главная страница"
 ---
 
-<div class="container">
-  <section class="hero">
-    <h1 class="title">Привет 👋</h1>
-    <p class="description">Тут я делюсь своим опытом, в разработке приложений и не только. Технический стек <a href="https://angular.io">Angular</a>, <a href="https://www.typescriptlang.org">Typescript</a>,
-      <a href="https://rxjs.dev">RxJS</a> и <a href="https://leafletjs.com/">Leaflet</a></p>
-  </section>
-
-  <section class="section recent-articles">
-    <h2 class="title">Свежее</h2>
-    <ul class="article-list">
-      {% for article in collections.articles | head(-3) | reverse %}
-      <li><a href="{{ article.url }}">{{ article.data.title }}</a></li>
-      {% endfor %}
-    </ul>
-  </section>
-
-  <section class="section all-articles">
-    <h2 class="title">Всё</h2>
-
-    {% for year, articles in collections.articlesByYear %}
-    <section class="section">
-      <h3 class="title">{{ year }}</h3>
-      <ul class="article-list">
-        {% for article in articles %}
-        <li><a href="{{ article.url }}">{{ article.data.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </section>
-    {% endfor %}
-  </section>
-</div>
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Привет, Я Сэм 👋</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="dark:bg-slate-800 dark:text-gray-50">
+    <div class="absolute w-full h-full flex items-center justify-center">
+      <section class="p-4">
+        <h1 class="text-6xl font-bold mb-4">Привет, Я Сэм 👋</h1>
+        <p class="text-xl mb-4">Вы можете найти меня по нику <code class="rounded py-[3px] px-[5px] bg-slate-200 dark:bg-slate-600">mephistorine</code> везде :)</p>
+        <ul class="text-xl list-disc pl-[1.3rem]">
+          <li class="my-2 sm:m-0"><a class="text-blue-600 dark:text-blue-400 hover:text-blue-400 visited:text-violet-600 visited:dark:text-violet-500" href="https://twitter.com/mephistorine">Твиттер</a></li>
+          <li class="my-2 sm:m-0"><a class="text-blue-600 dark:text-blue-400 hover:text-blue-400 visited:text-violet-600 visited:dark:text-violet-500" href="https://instagram.com/mephistorine">Инстаграм</a></li>
+          <li class="my-2 sm:m-0"><a class="text-blue-600 dark:text-blue-400 hover:text-blue-400 visited:text-violet-600 visited:dark:text-violet-500" href="https://github.com/mephistorine">Гитхаб</a></li>
+          <li class="my-2 sm:m-0"><a class="text-blue-600 dark:text-blue-400 hover:text-blue-400 visited:text-violet-600 visited:dark:text-violet-500" href="https://t.me/mephistorine">Телеграм</a></li>
+          <li>mephistorine@gmail.com</li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
