@@ -50,3 +50,12 @@ isOffline = true
 city = "Иннополис"
 country = "Россия"
 
+[eveningOfKnowledge2022]
+name = "Evening of Knowledge"
+url = "https://itsochi.pro/"
+isOneDay = true
+startDate = 2022-07-22T00:00:00.000Z
+isOffline = true
+city = "Сочи"
+country = "Россия"
+

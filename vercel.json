@@ -19,6 +19,11 @@
       "source": "/rxin",
       "destination": "/talks/rxjs-intro-mergeconf-2021",
       "permanent": false
+    },
+    {
+      "source": "/ccqu",
+      "destination": "/talks/evening-of-knowledge-2022-sochi-css-container-queries",
+      "permanent": false
     }
   ]
 }
